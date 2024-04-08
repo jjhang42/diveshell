@@ -1,0 +1,13 @@
+<command_line>		::= <command_list> [ <control_command> <command_line>]
+<command_list>		::= <command> [ <pipeline> <command_list> ]
+<command>			::= [ <charaters> | <string> ] <redirection>
+<control_command>	::= [ <logical_or> | <logical_and> ] <command>
+<logical_or>		::= "||"
+<logical_and>		::= "&&"
+<pipe_operator>		::= "|" <command>
+<redirection>		:= ( "<" | "<<" | ">" | ">>") <filename>
+<filename>			::= <string> | <characters>
+<identifier>		::= [a-zA-Z0-9_]+
+<string>			::= '"' <characters> '"' | "'" <characters> "'"
+<characters>		::= <character> [ <characters> ]
+<character>			::= any printable character except double quote(") and single quote(')
