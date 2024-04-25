@@ -1,0 +1,10 @@
+<command_line>		::= <command_list> [ <control_command> <command_line> ]
+<command_list>		::= <command> [ "|" <command_list> ]
+<command>			::= ( <charaters> | <string> ) [ <redirection> ]
+<control_command>	::= ( <logical_or> | <logical_and> )
+<logical_or>		::= "||"
+<logical_and>		::= "&&"
+<redirection>		:= ( "<" | "<<" | ">" | ">>") <filename> [ <redirection> ]
+<filename>			::= <string> | <characters>
+<string>			::= '"' <characters> '"' | "'" <characters> "'"
+<characters>		::= any printable characters except double quote(") and single quote(')
