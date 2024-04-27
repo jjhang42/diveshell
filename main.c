@@ -40,20 +40,20 @@ void	handle_signal(int sig)
 
 int	main(int ac, char **av, char **env)
 {
-	char	**copy_env;
+	t_list	*cpenv;
 	char	*input;
-	t_token	*cmd;
+	t_pars_tree	*cmd;
 
 	if (ac == 1 && !av[1])
 	{
-		copy_env = ft_ddup(env);//미니쉘 켤 때마다 매번
+		cpenv = ft_ddup(env);//미니쉘 켤 때마다 매번
 		signal(SIGINT, handle_signal);//signal controller
 		signal(SIGQUIT, handle_signal);
 		while((input = readline("minishell$ ")))
 		{
 			add_history(input);
 			*cmd = paser(input);//화이트 스페이스만 있는 경우는?
-			process(cmd, copy_env);
+			process(cmd, cpenv);
 			free(input);
 			//cmd도 프리해줘야 하나?
 		}//ctrl + d를 눌렀을 때

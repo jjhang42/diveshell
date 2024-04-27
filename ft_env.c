@@ -1,16 +1,16 @@
 #include "header.h"
 
-int	ft_env(char **envp, int fd)
+int	ft_env(t_list *cpenv, int fd)
 {
-	int	i;
+	t_list	*cur;
 
-	i = 0;
-	while (envp[i])
+	cur = cpenv;
+	while (cur)
 	{
-		if (ft_strchr(envp[i], '=') != NULL)
-			ft_putstr_fd(envp[i], fd);
+		if (ft_strchr(cur->content, '=') != NULL)
+			ft_putstr_fd(cur->content, fd);
 		write(fd, "\n", 1);
-		i++;
+		cur = cur->next;
 	}
 	return (1);
 }

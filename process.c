@@ -1,6 +1,6 @@
 #include "header.h"
 
-int	builtin(t_token *cmd, char **copy_env, int fds[])
+int	builtin(t_pars_tree *cmd, t_list cpenv, int fds[])
 {
 	int	fd;
 	
@@ -16,7 +16,7 @@ int	builtin(t_token *cmd, char **copy_env, int fds[])
 	else if (ft_strcmp("exit", cmd->cmd) == 0)
 		return (ft_exit(cmd));
 	else if (ft_strcmp("env", cmd->cmd) == 0)
-		return (ft_env(*envp, fd));
+		return (ft_env(cpenv, fd));
 	else if (ft_strcmp("export", cmd->cmd) == 0)
 		return (ft_export(cmd, copy_env, fd));
 	else if (ft_strcmp("echo", cmd->cmd) == 0)
@@ -31,7 +31,15 @@ int	builtin(t_token *cmd, char **copy_env, int fds[])
 	return (0);
 }
 
-void	process(t_token *cmd, char **copy_env)
+// int	processer(t_pars_tree *cmd, char **env)
+// {
+// 	if (is_heredoc)
+// 		make_heredoc_file()
+// 	while (pipecount)
+// 		pipex();
+// }
+
+void	process(t_pars_tree *cmd, t_list *cpenv)
 {
 // 	int pid;
 
@@ -39,7 +47,7 @@ void	process(t_token *cmd, char **copy_env)
 		builtin(cmd, copy_env);
 // 	else
 // 	{
-// 		pid = prcesser(cmd, env);
+// 		pid = processer(cmd, env);
 // 		if (waitpid(pid, &status, 0) != -1)
 // 		{
 // 			///여러가지 exit 코드 계산해줘야함
@@ -49,11 +57,3 @@ void	process(t_token *cmd, char **copy_env)
 // 		;
 // 	unlink("heredoc");
 }
-
-// int	processer(t_list *cmd, char **env)
-// {
-// 	if (is_heredoc)
-// 		make_heredoc_file()
-// 	while (pipecount)
-// 		pipex();
-// }
