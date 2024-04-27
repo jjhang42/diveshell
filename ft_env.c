@@ -8,8 +8,7 @@ int	ft_env(t_list *cpenv, int fd)
 	while (cur)
 	{
 		if (ft_strchr(cur->content, '=') != NULL)
-			ft_putstr_fd(cur->content, fd);
-		write(fd, "\n", 1);
+			ft_putendl_fd(cur->content, fd);
 		cur = cur->next;
 	}
 	return (1);
