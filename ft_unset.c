@@ -1,30 +1,48 @@
-int ft_find_envkey(char *key, char **envp)
-{
-	int i;
-	size_t key_len;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: inryu <inryu@student.42seoul.kr>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/27 20:01:08 by codespace         #+#    #+#             */
+/*   Updated: 2024/04/27 20:04:37 by inryu            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	i = 0;
+#include "header.h"
+
+void	del(void *content)
+{
+	free(content);
+}
+
+int ft_find_envkey(char *key, t_list *cpenv)
+{
+	t_list	*cur;
+	t_list	*pre;
+	size_t	key_len;
+
+	cur = cpenv;
+	pre = NULL;
 	key_len = ft_strlen(key);
-	while (envp[i])
+	while (cur)
 	{
-		if (ft_strncmp(key, envp[i], key_len) == 0 && envp[i][key_len] == '=')
-			return (i);
-		i++;
+		if (ft_strncmp(key, cur->content, key_len) == 0 && cur->content[key_len] == '=')
+		{
+			if (pre == NULL)
+				cpenv = cur->next;
+			else
+				pre->next = cur->next;
+			ft_lstdelone(cur, (*del));
+		}
+		pre = cur;
+		cur = cur->next;
 	}
 	return (-1);
 }
 
-void ft_delete_env(int tgt_idx, char **envp)
-{
-	free(envp[tgt_idx]);
-	while (envp[tgt_idx])
-	{
-		envp[tgt_idx] = envp[tgt_idx + 1];
-		tgt_idx++;
-	}
-}
-
-int	ft_valid_key(char *key)
+void	ft_valid_key(char *key)
 {
 	int i;
 
@@ -42,25 +60,16 @@ int	ft_valid_key(char *key)
 	return (1);
 }
 
-int ft_unset(t_cmd *cmd_list, char **envp)
+int ft_unset(t_pars_tree *cmd, t_list cpenv, int fd)
 {
-	int i;
-	int tgt_idx;
-
-	i = 1;
-	while (cmd_list->cmdline[i].cmd && cmd_list->cmdline[i].redir_flag == 0)
+	if (cmd->cmd && cmd->redir_flag == 0)
 	{
-		if (ft_valid_key(cmd_list->cmdline[i].cmd))
-		{
-			tgt_idx = ft_find_envkey(cmd_list->cmdline[i].cmd, envp);
-			if (tgt_idx > -1)
-				ft_delete_env(tgt_idx, envp);
-		}
+		if (ft_valid_key(cmd->cmd[1]))
+			ft_find_envkey(cmd->cmd[1], cpenv);
 		else
-			cmd_list->err_manage.errcode = 6;
-		i++;
+			ft_putendl_fd("bash: unset: `a=': not a valid identifier", 2);
+			return (-1);
 	}
-	if (cmd_list->err_manage.errcode == 6)
-		return (-1);
+	open(fd, O_WRONLY);
 	return (1);
 }

@@ -18,12 +18,12 @@ int	builtin(t_pars_tree *cmd, t_list cpenv, int fds[])
 	else if (ft_strcmp("env", cmd->cmd) == 0)
 		return (ft_env(cpenv, fd));
 	else if (ft_strcmp("export", cmd->cmd) == 0)
-		return (ft_export(cmd, copy_env, fd));
+		return (ft_export(cmd, cpenv, fd));
 	else if (ft_strcmp("echo", cmd->cmd) == 0)
 		return (ft_echo(cmd, fd));
 	else if (ft_strcmp("unset", cmd->cmd) == 0)
-		return (ft_unset(cmd, *copy_env));
-	else if (non_builtin(cmd, *copy_env, fds) == 0) // 위의 해당하는 명령어가 아닐경우, non_built 함수에서 입력된 명령어가 유효한 명령어인지 최종적으로 확인합니다. 유효한 명령어일 경우, 내장된 프로그램이 실행되고 아닐경우, 오류가 출력됩니다.
+		return (ft_unset(cmd, *cpenv, fd));
+	else if (non_builtin(cmd, *cpenv, fds) == 0) // 위의 해당하는 명령어가 아닐경우, non_built 함수에서 입력된 명령어가 유효한 명령어인지 최종적으로 확인합니다. 유효한 명령어일 경우, 내장된 프로그램이 실행되고 아닐경우, 오류가 출력됩니다.
 	{
 		cmd->errcode = 1;
 		return (-1);
