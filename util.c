@@ -6,7 +6,7 @@
 /*   By: inryu <inryu@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 20:04:52 by inryu             #+#    #+#             */
-/*   Updated: 2024/04/27 20:04:57 by inryu            ###   ########.fr       */
+/*   Updated: 2024/04/28 02:37:22 by inryu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ t_list	*ft_ddup(char **env)
 		s = ft_strdup(env[i]);
 		if (new == NULL)
 		{
-			new = ft_lstnew(s);
+			new = ms_lstnew(s);
 			head = new;
 		}
 		else
 		{
-			new = ft_lstnew(s);
+			new = ms_lstnew(s);
 			ft_lstadd_back(&head, new);
 		}
 		i++;
