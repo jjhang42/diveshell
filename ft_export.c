@@ -43,7 +43,7 @@ int ft_export(t_pars_tree *cmd, t_list cpenv, int fd)
         	cur = cpenv;
 	        while (cur)
 	        {
-		        ft_putendl_fd(cur->content, fd);
+		        ft_putendl_fd(cur->content, fd);//아니지 내용 없는 애는 '' 넣어야지
 		        cur = cur->next;
             }
             return (1);
