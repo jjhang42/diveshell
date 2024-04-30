@@ -6,7 +6,7 @@
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 13:01:05 by jjhang            #+#    #+#             */
-/*   Updated: 2024/02/28 20:35:57 by jjhang           ###   ########.fr       */
+/*   Updated: 2024/04/26 21:29:22 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stddef.h>
 # include <stdio.h>
+# include <limits.h>
 # include "ft_printf.h"
 # include "get_next_line.h"
 

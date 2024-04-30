@@ -6,7 +6,7 @@
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 16:56:52 by jjhang            #+#    #+#             */
-/*   Updated: 2024/04/24 21:31:24 by jjhang           ###   ########.fr       */
+/*   Updated: 2024/04/30 19:17:24 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,21 @@ static char	token_start(int *lexer, char c)
 	return (' ');
 }
 
+static int	is_other_symbol(char end_char, char c)
+{
+	if (end_char == '\'' || end_char == '\"')
+		return (0);
+	if (c == '>' || c == '<')
+		return (1);
+	return (0);
+}
+
 static void	read_word(int *lexer, char end_char, char **cursor)
 {
 	if (end_char != ' ')
 		(*cursor)++;
-	while (**cursor != '\0' && **cursor != end_char)
+	while (**cursor != '\0' && \
+			(**cursor != end_char && !is_other_symbol(end_char, **cursor)))
 	{
 		(*cursor)++;
 		if (token_start(lexer, **cursor) != ' ')
@@ -59,6 +69,8 @@ static void	add_new_word(int *lexer, char *word, t_pars_tree **ptr)
 	else if ((*ptr)->type < 32)
 	{
 		temp = get_last_node(LEFT, *ptr);
+		if (temp->type == 16)
+			*lexer = 2;
 		temp->left = new_tree_node(*lexer, word);
 	}
 	else
