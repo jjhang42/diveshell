@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   output_redirection.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/10 22:51:06 by jjhang            #+#    #+#             */
+/*   Updated: 2024/05/26 01:11:58 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell_pipe.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	output_redirection(char *filename, t_process *data)
 {
-	t_list	*tem;
+	int	filedesc;
 
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
-	}
+	output_redirection_flag_ctl(data);
+	filedesc = open(filename, O_WRONLY | O_TRUNC | O_CREAT, 0644);
+	if (filedesc == -1)
+		error_handler(filename, NULL, 1);
+	data->fd[WRITE] = filedesc;
 }

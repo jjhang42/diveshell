@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/08 16:11:33 by jjhang            #+#    #+#             */
+/*   Updated: 2024/06/08 21:41:19 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
+/*char *getcwd (char *buff, size_t buff_size)*/
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	ft_pwd(char **argv)
 {
-	t_list	*tem;
+	char	*pwd;
 
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
-	}
+	if (ft_strcmp("pwd", argv[0]) != 0)
+		return (1);
+	pwd = getcwd(NULL, 0);
+	ft_printf ("%s\n", pwd);
+	free(pwd);
+	return (0);
 }

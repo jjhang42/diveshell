@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   is_able_to_envname.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/08 20:39:57 by jjhang            #+#    #+#             */
+/*   Updated: 2024/06/07 22:02:18 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	is_able_to_envname(char *name)
 {
-	t_list	*tem;
+	int	flag;
+	int	idx;
 
-	if (!*lst)
-		*lst = new;
-	else
+	idx = 0;
+	flag = 0;
+	while (name[idx] != '\0' && name[idx] != '=')
 	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
+		if (ft_isdigit(name[idx]) == 1)
+		{
+			flag = 0;
+			if (idx == 0)
+				flag = 1;
+		}
+		else if (ft_isalpha(name[idx]) == 1)
+			flag = 0;
+		else
+			flag = 1;
+		if (flag == 1)
+			break ;
+		idx++;
 	}
+	if (idx == 0)
+		flag = 1;
+	return (flag);
 }

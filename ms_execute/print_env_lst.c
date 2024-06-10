@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   print_env_lst.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/04 23:01:35 by jjhang            #+#    #+#             */
+/*   Updated: 2024/06/03 07:52:33 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	print_env_lst(t_env_lst *lst)
 {
-	t_list	*tem;
-
-	if (!*lst)
-		*lst = new;
-	else
+	while (lst != NULL)
 	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
+		if (lst->name != NULL && lst->content != NULL)
+		{
+			printf ("%s", lst->name);
+			printf ("=%s\n", lst->content);
+		}
+		lst = lst->next;
 	}
 }

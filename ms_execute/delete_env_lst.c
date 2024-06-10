@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   delete_env_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/04 19:50:47 by jjhang            #+#    #+#             */
+/*   Updated: 2024/05/28 21:41:27 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	delete_env_node(t_env_lst *node)
 {
-	t_list	*tem;
-
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
-	}
+	if (node == NULL)
+		return ;
+	if (node->content != NULL)
+		free(node->content);
+	if (node->name != NULL)
+		free(node->name);
+	free(node);
 }

@@ -6,7 +6,7 @@
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 20:51:03 by jjhang            #+#    #+#             */
-/*   Updated: 2024/02/27 14:37:12 by jjhang           ###   ########.fr       */
+/*   Updated: 2024/06/08 23:29:58 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_putchar_int(int fd, char c);
 int		ft_setfield(t_format *data, int size, int pos);
 int		ft_putnbr_int(t_format *data, ssize_t nbr, int base);
 int		ft_putnbr_szt(t_format *data, size_t nbr, int base);
-int		ft_putstr_int(char *str, int size);
+int		ft_putstr_int(t_format *data, char *str, int size);
 int		init_data1(t_format *data, char *str);
 int		init_data2(t_format *data, char *str);
 int		init_varg(t_format *data, va_list *arg_ptr);

@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/02/06 14:08:47 by jjhang            #+#    #+#             */
+/*   Updated: 2024/05/13 18:46:27 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	double_free(char **arr)
 {
-	t_list	*tem;
+	int	idx;
 
-	if (!*lst)
-		*lst = new;
-	else
+	idx = 0;
+	while (arr[idx] != NULL)
 	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
+		free(arr[idx]);
+		idx++;
 	}
+	free(arr);
 }

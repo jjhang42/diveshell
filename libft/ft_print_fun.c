@@ -6,7 +6,7 @@
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 20:13:29 by jjhang            #+#    #+#             */
-/*   Updated: 2024/02/27 13:20:30 by jjhang           ###   ########.fr       */
+/*   Updated: 2024/06/08 23:31:10 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_putnbr_int(t_format *data, ssize_t nbr, int base)
 	return (re_val);
 }
 
-int	ft_putstr_int(char *str, int size)
+int	ft_putstr_int(t_format *data, char *str, int size)
 {
 	int	re_val;
 	int	idx;
@@ -111,7 +111,7 @@ int	ft_putstr_int(char *str, int size)
 	re_val = 0;
 	while (idx < size)
 	{
-		check = write (1, &str[idx], 1);
+		check = write (data->fd, &str[idx], 1);
 		if (check == -1)
 			return (-1);
 		re_val += check;

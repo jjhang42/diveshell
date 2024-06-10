@@ -6,7 +6,7 @@
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:02:48 by jjhang            #+#    #+#             */
-/*   Updated: 2023/11/27 16:53:28 by jjhang           ###   ########.fr       */
+/*   Updated: 2024/06/08 23:30:08 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static int	printstr_part(t_format *data, char *str)
 	re_val = 0;
 	if (str == NULL)
 	{
-		check = ft_putstr_int("(null)", (*data).prec);
+		check = ft_putstr_int(data, "(null)", (*data).prec);
 		if (check == -1)
 			return (-1);
 		re_val += check;
 	}
 	else
 	{
-		check = ft_putstr_int(str, (*data).prec);
+		check = ft_putstr_int(data, str, (*data).prec);
 		if (check == -1)
 			return (-1);
 		re_val += check;

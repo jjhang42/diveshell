@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   free_exe_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/13 20:51:34 by jjhang            #+#    #+#             */
+/*   Updated: 2024/06/04 23:53:42 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	free_exe_data(t_pars_tree **ctl_cmd, t_process *data)
 {
-	t_list	*tem;
+	t_pars_tree	*cur;
 
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
-	}
+	free(data->argv);
+	free(data->redirection);
+	data->argv = NULL;
+	data->redirection = NULL;
+	cur = *ctl_cmd;
+	delete_tree_node(ctl_cmd);
+	printf ("ctl_cmd: %p\n", *ctl_cmd);
 }

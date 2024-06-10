@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   is_another_ctl_cmd.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/01 01:02:25 by jjhang            #+#    #+#             */
+/*   Updated: 2024/05/01 19:43:50 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_parse.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	is_another_ctl_cmd(int *lexer, char **cursor)
 {
-	t_list	*tem;
+	char	*str;
+	int		val;
 
-	if (!*lst)
-		*lst = new;
-	else
+	if (*lexer == INT_MIN)
+		return ;
+	val = is_control_oprator(*cursor);
+	if (val != 0)
 	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
+		str = ft_substr(*cursor, 0, val);
+		syntax_error(lexer, str);
 	}
 }

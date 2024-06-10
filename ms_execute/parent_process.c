@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   parent_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 11:19:21 by jjhang            #+#    #+#             */
-/*   Updated: 2024/05/31 13:56:37 by jjhang           ###   ########.fr       */
+/*   Created: 2024/05/16 14:26:49 by jjhang            #+#    #+#             */
+/*   Updated: 2024/05/27 16:43:26 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_execute.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	parent_process(t_process *data)
 {
-	t_list	*tem;
-
-	if (!*lst)
-		*lst = new;
-	else
+	if (data->fd[WRITE] != WRITE)
+		close(data->fd[WRITE]);
+	if (data->ex_fd != -1)
+		close(data->ex_fd);
+	if (data->fd[READ] != READ)
+		data->ex_fd = data->fd[READ];
+	if (data->argv != NULL)
 	{
-		tem = ft_lstlast(*lst);
-		tem->next = new;
+		free(data->argv);
+		data->argv = NULL;
 	}
+	if (data->redirection != NULL)
+	{
+		free(data->redirection);
+		data->redirection = NULL;
+	}
+	return (0);
 }

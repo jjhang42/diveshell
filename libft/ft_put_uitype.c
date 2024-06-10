@@ -6,7 +6,7 @@
 /*   By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:52:45 by jjhang            #+#    #+#             */
-/*   Updated: 2023/12/16 13:35:03 by jjhang           ###   ########.fr       */
+/*   Updated: 2024/06/08 23:31:32 by jjhang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	printui_signpart(t_format *data, size_t nbr, int size, int check)
 	re_val = 0;
 	if (flag_manager(data, '#', 'c'))
 	{
-		check = ft_putstr_int(add, 2);
+		check = ft_putstr_int(data, add, 2);
 		if (check == -1)
 			return (-1);
 		re_val += check;

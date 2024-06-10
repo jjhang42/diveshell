@@ -6,7 +6,7 @@
 #    By: jjhang <jjhang@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/08 21:36:55 by jjhang            #+#    #+#              #
-#    Updated: 2024/04/06 00:52:20 by jjhang           ###   ########.fr        #
+#    Updated: 2024/05/20 14:34:05 by jjhang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS = ft_isalpha.c \
 	   ft_strlcat.c \
 	   ft_toupper.c \
 	   ft_tolower.c \
+	   ft_strcmp.c \
 	   ft_strchr.c \
 	   ft_strrchr.c \
 	   ft_strncmp.c \
@@ -52,7 +53,8 @@ SRCS = ft_isalpha.c \
 	   ft_getenv.c \
 	   $(LST) \
 	   $(GNL) \
-	   $(PRINTF)
+	   $(PRINTF) \
+	   $(PARSER)
 
 LST = ft_lstnew.c \
 		 ft_lstadd_front.c \
